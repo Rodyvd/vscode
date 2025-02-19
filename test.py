@@ -1,14 +1,24 @@
-from flask import Flask
+import os
 
-secret_key = 'yeah' 
+def insecure_function(user_input):
+    # Command Injection Vulnerability
+    os.system("echo " + user_input)
 
-app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = secret_key  # Noncompliant
+def sql_injection(user_input):
+    # SQL Injection Vulnerability
+    query = "SELECT * FROM users WHERE name = '" + user_input + "'"
+    print(query)
 
-@app.route('/')
-def home():
-    return "Hello, Flask!"
+def hardcoded_password():
+    # Hardcoded Password Vulnerability
+    password = "supersecretpassword"
+    print("Password is: " + password)
 
+def main():
+    user_input = input("Enter something: ")
+    insecure_function(user_input)
+    sql_injection(user_input)
+    hardcoded_password()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    main()
