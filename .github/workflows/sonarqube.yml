@@ -30,7 +30,7 @@ jobs:
 
       - name: Echo Environment Variables
         run: |
-          echo "SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}
+          echo "SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}"
           echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}"
 
       - name: Run SonarQube Scan
