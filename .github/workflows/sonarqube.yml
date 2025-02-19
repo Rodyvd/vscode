@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  sonarQube:
+  sonarqube:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,16 +28,9 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
 
-      - name: Echo Environment Variables
-        run: |
-          echo "SONAR_HOST_URL=http://40.68.56.81:9000"
-          echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}"
-
-      - name: SonarQube Scan
+      - name: Run SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v1.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: "http://40.68.56.81:9000"
         with:
           projectBaseDir: ./
-
