@@ -23,14 +23,12 @@ jobs:
 
       - name: Install Dependency-Check
         run: |
-          mkdir dependency-check
-          cd dependency-check
           curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.3/dependency-check-6.5.3-release.zip
-          unzip dependency-check.zip
+          unzip dependency-check.zip -d dependency-check
 
       - name: Run Dependency-Check Scan
         run: |
-          ./dependency-check/bin/dependency-check.sh --project "your-project-name" --scan . --format "HTML" --out "dependency-check-report" --failOnCVSS 7 --enableRetired
+          dependency-check/bin/dependency-check.sh --project "vscode" --scan . --format "HTML" --out "dependency-check-report" --failOnCVSS 7 --enableRetired
 
       - name: Upload Dependency-Check Results
         uses: actions/upload-artifact@v4
