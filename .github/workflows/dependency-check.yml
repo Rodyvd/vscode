@@ -21,9 +21,6 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Build project with Maven
-        run: mvn clean install
-
       - name: Install Dependency-Check
         run: |
           mkdir dependency-check
@@ -36,7 +33,7 @@ jobs:
           ./dependency-check/bin/dependency-check.sh --project "your-project-name" --scan . --format "HTML" --out "dependency-check-report" --failOnCVSS 7 --enableRetired
 
       - name: Upload Dependency-Check Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: Dependency-Check Report
           path: dependency-check-report
