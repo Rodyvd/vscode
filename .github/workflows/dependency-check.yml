@@ -33,7 +33,7 @@ jobs:
           ./dependency-check/bin/dependency-check.sh --project "your-project-name" --scan . --format "HTML" --out "dependency-check-report" --failOnCVSS 7 --enableRetired
 
       - name: Upload Dependency-Check Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Dependency-Check Report
           path: dependency-check-report
