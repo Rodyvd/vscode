@@ -25,9 +25,6 @@ jobs:
       - name: Verify Java Version
         run: java -version
 
-      - name: Verify SonarQube Scanner Version
-        run: sonar-scanner --version
-
       - name: Cache SonarQube packages
         uses: actions/cache@v2
         with:
