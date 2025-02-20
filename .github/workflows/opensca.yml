@@ -1,0 +1,32 @@
+name: SCA Analysis
+
+on: [push, pull_request]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.18'
+
+    - name: Install OpenSCA
+      run: |
+        git clone https://github.com/XmirrorSecurity/OpenSCA-cli.git
+        cd OpenSCA-cli
+        go build
+
+    - name: Run OpenSCA
+      run: |
+        ./OpenSCA-cli/opensca scan -d . -o report.json
+
+    - name: Upload SCA Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: sca-report
+        path: report.json
