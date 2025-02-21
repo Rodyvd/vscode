@@ -1,5 +1,10 @@
 name: workflow for Python using Snyk security scan
-on: push
+on:
+  workflow_run:
+    workflows: ["Semgrep Analysis"]
+    types:
+      - completed
+      
 jobs:
   security:
     runs-on: ubuntu-latest
