@@ -35,9 +35,12 @@ jobs:
         with:
           cosign-release: 'v1.12.1'  # Specify the desired version
 
-      - name: Sign Docker Image
+      - name: Sign Container Image
         env:
-          COSIGN_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+          COSIGN_KEY: ${{ secrets.COSIGN_KEY }}
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
         run: |
           echo "$COSIGN_KEY" > cosign.key
           cosign sign --key cosign.key ${{ secrets.DOCKER_USERNAME }}/pwc:latest
+        shell: bash
+
