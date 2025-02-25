@@ -1,4 +1,4 @@
-name: workflow for Python using Snyk security scan
+name: Python SCA scan
 on:
   workflow_run:
     workflows: ["Semgrep Analysis"]
