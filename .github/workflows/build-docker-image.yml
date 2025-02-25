@@ -37,6 +37,5 @@ jobs:
         env:
           COSIGN_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
         run: |
-          echo "$COSIGN_KEY" | base64 -d > cosign.key
-          cat cosign.key  # For debugging: ensure this output is as expected
+          echo "$COSIGN_KEY" > cosign.key
           cosign sign --key cosign.key ${{ secrets.DOCKER_USERNAME }}/pwc:latest
