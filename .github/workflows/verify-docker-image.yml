@@ -1,8 +1,8 @@
-name: Verify Docker Image Signature
+name: verify-docker-image
 
 on:
   workflow_run:
-    workflows: ["Build and Sign Docker Image"]
+    workflows: ["build-docker-image"]
     types:
       - completed
 
