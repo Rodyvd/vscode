@@ -11,6 +11,8 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v2
 
@@ -33,14 +35,5 @@ jobs:
       - name: Install Cosign
         uses: sigstore/cosign-installer@v2
 
-      - name: Write Cosign private key to file
-        run: echo "${{ secrets.COSIGN_KEY }}" > cosign.key
-
-      - name: Decrypt Cosign private key using OpenSSL
-        env:
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-        run: |
-          openssl pkey -in cosign.key -out cosign.decrypted.key -passin pass:${{ secrets.COSIGN_PASSWORD }}
-
-      - name: Sign Docker image with Cosign
-        run: cosign sign --key cosign.decrypted.key ${{ secrets.DOCKER_USERNAME }}/pwc:latest
+      - name: Keyless Sign Docker Image with Cosign
+        run: cosign sign ${{ secrets.DOCKER_USERNAME }}/pwc:latest
