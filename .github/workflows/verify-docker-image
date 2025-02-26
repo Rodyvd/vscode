@@ -1,0 +1,26 @@
+name: Verify Docker Image Signature
+
+on:
+  workflow_run:
+    workflows: ["Build and Sign Docker Image"]
+    types:
+      - completed
+
+jobs:
+  verify-signature:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+        with:
+          cosign-release: "v3.4.0"
+
+      - name: Verify Cosign Signature
+        env:
+          COSIGN_EXPERIMENTAL: "true"
+        run: |
+          cosign verify docker.io/${{ secrets.DOCKER_USERNAME }}/pwc:latest \
+            --certificate-identity-regexp=".*" \
+            --certificate-oidc-issuer-regexp=".*"
