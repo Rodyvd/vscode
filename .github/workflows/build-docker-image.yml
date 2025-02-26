@@ -12,7 +12,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
+      id-token: write  # Required for OIDC authentication
     steps:
       - uses: actions/checkout@v2
 
@@ -36,4 +36,6 @@ jobs:
         uses: sigstore/cosign-installer@v2
 
       - name: Keyless Sign Docker Image with Cosign
-        run: cosign sign ${{ secrets.DOCKER_USERNAME }}/pwc:latest
+        env:
+          COSIGN_EXPERIMENTAL: "true"
+        run: cosign sign --yes ${{ secrets.DOCKER_USERNAME }}/pwc:latest
