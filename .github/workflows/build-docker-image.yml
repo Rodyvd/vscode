@@ -33,7 +33,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@v2
+        uses: sigstore/cosign-installer@v3.4.0
 
       - name: Keyless Sign Docker Image with Cosign
         env:
