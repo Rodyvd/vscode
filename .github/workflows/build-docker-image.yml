@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Push, and Sign Docker Image
 
 on:
   workflow_run:
@@ -27,3 +27,9 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
+
+      - name: Write Cosign private key to file
+        run: echo "${{ secrets.COSIGN_KEY }}" > cosign.key
+
+      - name: Sign Docker image with Cosign
+        run: cosign sign --key cosign.key ${{ secrets.DOCKER_USERNAME }}/pwc:latest
