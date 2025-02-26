@@ -36,7 +36,11 @@ jobs:
       - name: Write Cosign private key to file
         run: echo "${{ secrets.COSIGN_KEY }}" > cosign.key
 
-      - name: Sign Docker image with Cosign
+      - name: Decrypt Cosign private key using OpenSSL
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-        run: cosign sign --key cosign.key ${{ secrets.DOCKER_USERNAME }}/pwc:latest
+        run: |
+          openssl pkey -in cosign.key -out cosign.decrypted.key -passin pass:${{ secrets.COSIGN_PASSWORD }}
+
+      - name: Sign Docker image with Cosign
+        run: cosign sign --key cosign.decrypted.key ${{ secrets.DOCKER_USERNAME }}/pwc:latest
