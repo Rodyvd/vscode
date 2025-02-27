@@ -1,10 +1,12 @@
 name: Build Docker Image
 
 on:
-  workflow_run:
-    workflows: ["Python SCA SCAN"]
-    types:
-      - completed
+  workflow_call:
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+      DOCKER_PASSWORD:
+        required: true
 
 jobs:
   build-and-push:
