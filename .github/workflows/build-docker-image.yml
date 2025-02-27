@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-push:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write  # Required for OIDC authentication
@@ -37,3 +38,12 @@ jobs:
         env:
           COSIGN_EXPERIMENTAL: "true"
         run: cosign sign --yes ${{ secrets.DOCKER_USERNAME }}/pwc:latest
+
+  on-failure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo 'The triggering workflow failed'
+      - name: Fail Job
+        run: exit 1
