@@ -2,6 +2,14 @@ name: SonarQube Analysis
 
 on:
   workflow_call:
+    inputs:
+      SONAR_HOST_URL:
+        required: true
+        type: string
+      SONAR_TOKEN:
+        required: true
+        type: string
+
 
 jobs:
   sonarqube:
@@ -28,14 +36,14 @@ jobs:
 
       - name: Echo Environment Variables
         run: |
-          echo "SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}"
-          echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}"
+          echo "SONAR_HOST_URL=${{ inputs.SONAR_HOST_URL }}"
+          echo "SONAR_TOKEN=${{ inputs.SONAR_TOKEN }}"
 
       - name: Run SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v2.0.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ inputs.SONAR_HOST_URL }}
         with:
           projectBaseDir: ./
           args: -X -Dproject.settings=config/sonar-project.properties
