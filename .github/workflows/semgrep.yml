@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["SonarQube Analysis"]
     types:
-      - completed
+      - Success
 
 jobs:
   semgrep:
