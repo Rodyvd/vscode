@@ -5,15 +5,15 @@ on:
     branches:
       - main
     paths-ignore:
-      - '.github/workflows'
-      - '/config'
+      - '.github/workflows/**'
+      - '/config/**'
       
   pull_request:
     branches:
       - main
     paths-ignore:
-      - '.github/workflows'
-      - '/config'
+      - '.github/workflows/**'
+      - '/config/**'
 
 jobs:
   sonarqube:
