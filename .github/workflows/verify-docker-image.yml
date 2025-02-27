@@ -2,7 +2,7 @@ name: verify-docker-image
 
 on:
   workflow_run:
-    workflows: ["build-docker-image"]
+    workflows: ["Build Docker Image"]
     types:
       - completed
 
