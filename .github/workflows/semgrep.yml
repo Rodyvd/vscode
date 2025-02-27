@@ -37,3 +37,5 @@ jobs:
 
     steps:
       - run: echo 'The triggering workflow failed'
+      - name: Fail Job
+        run: exit 1
