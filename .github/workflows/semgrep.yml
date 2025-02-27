@@ -1,10 +1,7 @@
 name: Semgrep Analysis
 
 on:
-  workflow_run:
-    workflows: ["SonarQube Analysis"]
-    types:
-      - completed
+  workflow_call:
 
 jobs:
   semgrep:
