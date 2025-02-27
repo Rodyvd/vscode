@@ -1,13 +1,13 @@
 name: Python SCA scan
+
 on:
-  workflow_run:
-    workflows: ["Semgrep Analysis"]
-    types:
-      - completed
+  workflow_call:
+    secrets:
+      SNYK_TOKEN:
+        required: true
       
 jobs:
   security:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -15,12 +15,3 @@ jobs:
         uses: snyk/actions/python@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-  on-failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: echo 'The triggering workflow failed'
-      - name: Fail Job
-        run: exit 1
