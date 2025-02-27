@@ -2,13 +2,11 @@ name: SonarQube Analysis
 
 on:
   workflow_call:
-    inputs:
+    secrets:
       SONAR_HOST_URL:
         required: true
-        type: string
       SONAR_TOKEN:
         required: true
-        type: string
 
 jobs:
   sonarqube:
@@ -36,8 +34,8 @@ jobs:
       - name: Run SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v2.0.0
         env:
-          SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ inputs.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           projectBaseDir: ./
           args: -X -Dproject.settings=config/sonar-project.properties
