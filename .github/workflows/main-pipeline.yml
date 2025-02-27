@@ -34,7 +34,7 @@ jobs:
 
   build-image:
     needs: snyk-SCA
-    uses: ./.github/workflows/build-docker-image
+    uses: ./.github/workflows/build-docker-image.yml
     secrets:
       username: ${{ secrets.DOCKER_USERNAME }}
       password: ${{ secrets.DOCKER_PASSWORD }}
