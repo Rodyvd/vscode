@@ -18,3 +18,6 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/sonarqube.yml
+    secrets:
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
