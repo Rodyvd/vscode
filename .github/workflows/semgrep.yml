@@ -5,7 +5,6 @@ on:
 
 jobs:
   semgrep:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -27,12 +26,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: semgrep-results.sarif
-
-  on-failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: echo 'The triggering workflow failed'
-      - name: Fail Job
-        run: exit 1
