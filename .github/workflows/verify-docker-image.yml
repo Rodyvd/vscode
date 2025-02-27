@@ -1,11 +1,11 @@
 name: Verify Docker Image
 
 on:
-  workflow_run:
-    workflows: ["Build Docker Image"]
-    types:
-      - completed
-
+  workflow_call:
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+        
 jobs:
   verify-signature:
     runs-on: ubuntu-latest
