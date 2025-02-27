@@ -1,4 +1,4 @@
-name: verify-docker-image
+name: Verify Docker Image
 
 on:
   workflow_run:
