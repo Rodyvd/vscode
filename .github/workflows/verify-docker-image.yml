@@ -15,7 +15,6 @@ jobs:
     steps:
       - name: Install Cosign
         uses: sigstore/cosign-installer@v3.4.0
-
       - name: Verify Cosign Signature
         env:
           COSIGN_EXPERIMENTAL: "true"
@@ -27,7 +26,6 @@ jobs:
   on-failure:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
-
     steps:
       - run: echo 'The triggering workflow failed'
       - name: Fail Job
