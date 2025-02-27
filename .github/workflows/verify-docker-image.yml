@@ -8,13 +8,13 @@ on:
 
 jobs:
   verify-signature:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write
     steps:
       - name: Install Cosign
         uses: sigstore/cosign-installer@v3.4.0
+
       - name: Verify Cosign Signature
         env:
           COSIGN_EXPERIMENTAL: "true"
@@ -22,11 +22,3 @@ jobs:
           cosign verify docker.io/${{ secrets.DOCKER_USERNAME }}/pwc:latest \
             --certificate-identity-regexp=".*" \
             --certificate-oidc-issuer-regexp=".*"
-
-  on-failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo 'The triggering workflow failed'
-      - name: Fail Job
-        run: exit 1
