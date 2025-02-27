@@ -25,3 +25,9 @@ jobs:
   semgrep-SAST:
     needs: sonarqube-SAST
     uses: ./.github/workflows/semgrep.yml
+
+  snyk-SCA:
+    needs: semgrep-SAST
+    uses: ./.github/workflows/snyk.yml
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
