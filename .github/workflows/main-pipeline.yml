@@ -1,0 +1,20 @@
+name: Main Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
+      - '/config/**'
+      
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
+      - '/config/**'
+
+jobs:
+  test:
+    uses: ./.github/workflows/sonarqube.yml
