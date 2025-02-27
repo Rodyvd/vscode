@@ -23,4 +23,5 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   semgrep-SAST:
+    needs: sonarqube-SAST
     uses: ./.github/workflows/semgrep.yml
