@@ -31,3 +31,10 @@ jobs:
     uses: ./.github/workflows/snyk.yml
     secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  build-image:
+    needs: snyk-SCA
+    uses: ./.github/workflows/build-docker-image
+    secrets:
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
