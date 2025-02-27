@@ -1,11 +1,10 @@
 name: Build Docker Image
+
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Python SCA SCAN"]
+    types:
+      - completed
 
 jobs:
   build-and-push:
