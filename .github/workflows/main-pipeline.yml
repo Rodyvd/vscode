@@ -44,3 +44,11 @@ jobs:
     uses: ./.github/workflows/verify-docker-image.yml
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+
+  deploy-image:
+    needs: verify-image
+    uses: ./.github/workflows/deploy-docker-image.yml
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      
