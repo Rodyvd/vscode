@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pwc-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pwc-app
+  template:
+    metadata:
+      labels:
+        app: pwc-app
+    spec:
+      containers:
+      - name: pwc-container
+        image: yourdockerhubusername/pwc:latest
+        ports:
+        - containerPort: 5000
