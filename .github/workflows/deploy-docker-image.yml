@@ -39,4 +39,5 @@ jobs:
       - name: Deploy to AKS
         run: |
           kubectl set image deployment/pwc-deployment pwc-container=${{ secrets.DOCKER_USERNAME }}/pwc:latest
+          kubectl rollout restart deployment/pwc-deployment
           kubectl rollout status deployment/pwc-deployment
