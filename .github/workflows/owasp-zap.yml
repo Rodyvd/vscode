@@ -1,0 +1,13 @@
+name: OWASP ZAP DAST scan
+
+on:
+  workflow_call
+
+jobs:
+  owasp-zap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@v0.12.0
+        with:
+          target: 'http://9.163.226.34'
