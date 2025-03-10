@@ -13,7 +13,7 @@ jobs:
           target: 'http://9.163.226.34'
 
       - name: Upload ZAP Full Scan Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: zap-full-scan-report
           path: zap_full_report.html
