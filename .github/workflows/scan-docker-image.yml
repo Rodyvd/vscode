@@ -23,8 +23,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@v0.30.0
+        uses: aquasecurity/trivy-action@v0.28.0
         with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
           severity: 'MEDIUM,HIGH,CRITICAL'
           format: 'table'
+          exit-code: '1'
+          vuln-type: 'os,library'
+          ignore-unfixed: false
