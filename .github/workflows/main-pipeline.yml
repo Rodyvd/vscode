@@ -38,8 +38,15 @@ jobs:
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
 
-  deploy-image:
+  scan-image:
     needs: verify-image
+    uses: ./.github/workflows/scan-docker-image.yml
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  deploy-image:
+    needs: scan-image
     uses: ./.github/workflows/deploy-docker-image.yml
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
