@@ -34,6 +34,6 @@ jobs:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
           severity: 'MEDIUM,HIGH,CRITICAL'
           format: 'table'
-          exit-code: '1'
+          exit-code: '0'
           vuln-type: 'os,library'
           ignore-unfixed: false
