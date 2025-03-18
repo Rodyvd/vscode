@@ -47,7 +47,7 @@ jobs:
           DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
           # Adjust the following values as needed:
           DEFECTDOJO_PRODUCT: 1
-          DEFECTDOJO_ENGAGEMENT: 11
+          DEFECTDOJO_ENGAGEMENT: 1
           DEFECTDOJO_SCAN_TYPE: "Semgrep JSON Report"
           DEFECTDOJO_ENVIRONMENT: "Production"
           SCAN_DATE: $(date +%Y-%m-%d)
