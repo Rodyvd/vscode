@@ -50,7 +50,7 @@ jobs:
           DEFECTDOJO_ENGAGEMENT: 1
           DEFECTDOJO_SCAN_TYPE: "Semgrep JSON Report"
           DEFECTDOJO_ENVIRONMENT: "Production"
-          SCAN_DATE: $(date +%Y-%m-%d)
+          SCAN_DATE: 2025-03-18
         run: |
           echo "Uploading semgrep/results/semgrep.json to DefectDojo..."
           curl -k -X POST "$DEFECTDOJO_URL/api/v2/import-scan/" \
