@@ -58,6 +58,6 @@ jobs:
             -F "file=@semgrep/results/semgrep.json" \
             -F "scan_type=$DEFECTDOJO_SCAN_TYPE" \
             -F "product=$DEFECTDOJO_PRODUCT" \
-            -F "engagement=$DEFECTDOJO_ENGAGEMENT" \
+            -F "engagement=1" \
             -F "environment=$DEFECTDOJO_ENVIRONMENT" \
             -F "scan_date=$SCAN_DATE"
