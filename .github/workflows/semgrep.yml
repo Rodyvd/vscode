@@ -22,7 +22,7 @@ jobs:
       - name: Run Semgrep Scan
         run: |
           mkdir -p semgrep/results
-          semgrep --config auto --error --json --output=semgrep/results/semgrep.json
+          semgrep --config p/default --error --json --output=semgrep/results/semgrep.json
       - name: upload semgrep results
         if: always()
         uses: actions/upload-artifact@v4
