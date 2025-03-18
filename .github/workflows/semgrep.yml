@@ -46,8 +46,8 @@ jobs:
           DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
           DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
           # Adjust the following values as needed:
-          DEFECTDOJO_PRODUCT: "example-product"
-          DEFECTDOJO_ENGAGEMENT: "Github Actions Initiated SAST Scan"
+          DEFECTDOJO_PRODUCT: 00
+          DEFECTDOJO_ENGAGEMENT: 11
           DEFECTDOJO_SCAN_TYPE: "Semgrep JSON Report"
           DEFECTDOJO_ENVIRONMENT: "Production"
           SCAN_DATE: $(date +%Y-%m-%d)
@@ -58,6 +58,6 @@ jobs:
             -F "file=@semgrep/results/semgrep.json" \
             -F "scan_type=$DEFECTDOJO_SCAN_TYPE" \
             -F "product=$DEFECTDOJO_PRODUCT" \
-            -F "engagement=1" \
+            -F "engagement=$DEFECTDOJO_ENGAGEMENT" \
             -F "environment=$DEFECTDOJO_ENVIRONMENT" \
             -F "scan_date=$SCAN_DATE"
