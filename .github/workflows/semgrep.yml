@@ -40,7 +40,7 @@ jobs:
         with:
           name: semgrep-results
       - name: import scan results into defectdojo
-        uses: portswigger-cloud/defectdojo-active-findings@v1
+        uses: portswigger-cloud/defectdojo-import-scan@v1
         with:
           defectdojo-url: https://40.68.56.81:8443
           defectdojo-username: ${{ secrets.defectdojo_username }}
