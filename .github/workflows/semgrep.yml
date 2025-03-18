@@ -40,4 +40,9 @@ jobs:
           defectdojo-url: https://40.68.56.81:8443
           defectdojo-username: ${{ secrets.defectdojo-username }}
           defectdojo-password: ${{ secrets.defectdojo-password }}
+          defectdojo-product-type: example-product-type
+          defectdojo-product: example-product
+          defectdojo-environment-type: Production
+          defectdojo-scan-type: Semgrep JSON Report
+          defectdojo-engagement-name: Github Actions Initiated SAST Scan
           scan-results-file-name: semgrep.json
