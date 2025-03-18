@@ -18,6 +18,10 @@ jobs:
   semgrep-SAST:
     needs: sonarqube-SAST
     uses: ./.github/workflows/semgrep.yml
+    secrets:
+      defectdojo_username: ${{ secrets.defectdojo_username }}
+      defectdojo_password: ${{ secrets.defectdojo_password }}
+
 
   snyk-SCA:
     needs: semgrep-SAST
