@@ -46,7 +46,7 @@ jobs:
           DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
           DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
           # Adjust the following values as needed:
-          DEFECTDOJO_PRODUCT: 00
+          DEFECTDOJO_PRODUCT: 1
           DEFECTDOJO_ENGAGEMENT: 11
           DEFECTDOJO_SCAN_TYPE: "Semgrep JSON Report"
           DEFECTDOJO_ENVIRONMENT: "Production"
