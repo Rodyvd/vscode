@@ -2,6 +2,11 @@ name: Semgrep Analysis
 
 on:
   workflow_call:
+    secrets:
+      defectdojo_username:
+        required: true
+      defectdojo_password:
+        required: true
 
 jobs:
   semgrep:
