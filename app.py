@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return """
         <h1>Vulnerable Flask App</h1>
-        <p>Try the following endpoints to see vulnerabilities in action yeah  :</p>
+        <p>Try the following endpoints to see vulnerabilities in action :</p>
         <ul>
           <li><strong>/greet?name=YourName</strong> - Demonstrates an XSS vulnerability.</li>
           <li><strong>/calc?expr=2+2</strong> - Demonstrates a code injection vulnerability via eval().</li>
