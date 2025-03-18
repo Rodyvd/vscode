@@ -38,8 +38,8 @@ jobs:
         uses: portswigger-cloud/defectdojo-active-findings@v1
         with:
           defectdojo-url: https://40.68.56.81:8443
-          defectdojo-username: ${{ secrets.defectdojo-username }}
-          defectdojo-password: ${{ secrets.defectdojo-password }}
+          defectdojo-username: ${{ secrets.defectdojo_username }}
+          defectdojo-password: ${{ secrets.defectdojo_password }}
           defectdojo-product-type: example-product-type
           defectdojo-product: example-product
           defectdojo-environment-type: Production
