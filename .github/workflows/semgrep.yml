@@ -20,9 +20,31 @@ jobs:
         run: pip install semgrep
 
       - name: Run Semgrep Scan
-        run: semgrep --config p/default --output semgrep-results.sarif --sarif
-
-      - name: Upload Semgrep Results
-        uses: github/codeql-action/upload-sarif@v3
+        run: |
+          mkdir -p semgrep/results
+          semgrep --config auto --error --json --output=semgrep/results/semgrep.json
+      - name: upload semgrep results
+        id: upload-semgrep-results
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
-          sarif_file: semgrep-results.sarif
+          name: semgrep-results
+          path: semgrep/results/
+
+  import-semgrep-report:
+    name: import semgrep report
+    runs-on: ubuntu-latest
+    steps:
+      - name: download scan results artifact
+        id: download-scan-results-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: semgrep-results
+      - name: import scan results into defectdojo
+        id: import-scan-results-into-defectdojo
+        uses: portswigger-cloud/defectdojo-github-action@v1
+        with:
+          defectdojo-url: https://40.68.56.81:8443
+          defectdojo-username: ${{ secrets.defectdojo-username }}
+          defectdojo-password: ${{ secrets.defectdojo-password }}
+          scan-results-file-name: semgrep.json
