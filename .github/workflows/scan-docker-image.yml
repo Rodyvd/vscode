@@ -57,7 +57,7 @@ jobs:
           # Adjust the following values as needed:
           DEFECTDOJO_PRODUCT: 1
           DEFECTDOJO_ENGAGEMENT: 2
-          DEFECTDOJO_SCAN_TYPE: "Trivy JSON Report"
+          DEFECTDOJO_SCAN_TYPE: "Trivy Scan"
           DEFECTDOJO_ENVIRONMENT: "Production"
           SCAN_DATE: 2025-03-19
         run: |
