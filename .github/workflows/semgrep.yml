@@ -61,4 +61,4 @@ jobs:
             -F "engagement=$DEFECTDOJO_ENGAGEMENT" \
             -F "environment=$DEFECTDOJO_ENVIRONMENT" \
             -F "scan_date=$SCAN_DATE"
-            -d "close_old_findings=true"
+            -F "close_old_findings=true"
