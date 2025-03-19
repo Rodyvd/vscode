@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+      - name: Run Snyk Test and Generate JSON Report
+        run: snyk test --json > snyk_report.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
