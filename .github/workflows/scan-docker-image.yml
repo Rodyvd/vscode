@@ -30,3 +30,9 @@ jobs:
           exit-code: '0'
           vuln-type: 'os,library'
           ignore-unfixed: false
+
+      - name: Upload Trivy JSON Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-report
+          path: trivy-report.json
