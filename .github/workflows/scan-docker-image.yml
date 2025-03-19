@@ -5,6 +5,10 @@ on:
     secrets:
       DOCKER_USERNAME:
         required: true
+      DEFECTDOJO_API_TOKEN:
+        required: true
+      DEFECTDOJO_URL:
+        required: true
 
 jobs:
   trivy-scan:
