@@ -14,6 +14,6 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
       - name: Run Snyk Test and Generate JSON Report
-        run: snyk test --json > snyk_report.json
+        run: snyk test --file=requirements.txt --json > snyk_report.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
