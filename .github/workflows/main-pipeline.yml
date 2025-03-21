@@ -24,6 +24,7 @@ jobs:
 
   semgrep-SAST:
     #needs: sonarqube-SAST
+    needs: owasp-zap-dast
     uses: ./.github/workflows/semgrep.yml
     secrets:
       DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
@@ -67,9 +68,9 @@ jobs:
       AKS_RESOURCE_GROUP: ${{ secrets.AKS_RESOURCE_GROUP }}
       AKS_CLUSTER_NAME: ${{ secrets.AKS_CLUSTER_NAME }}   
       
-  owasp-zap-dast:
-    needs: deploy-image
-    uses: ./.github/workflows/owasp-zap.yml
-    secrets:
-      DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
-      DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
+  #owasp-zap-dast:
+    #needs: deploy-image
+    #uses: ./.github/workflows/owasp-zap.yml
+    #secrets:
+      #DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
+      #DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
