@@ -17,10 +17,23 @@ jobs:
         with:
           target: 'http://9.163.226.34'
 
+      - name: Upload ZAP Scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap_scan  # Name of the artifact
+          path: zap_scan.zip  # Ensure this matches the actual output file
+
+      - name: Download ZAP Scan results
+        uses: actions/download-artifact@v4
+        with:
+          name: zap_scan  # Download the uploaded artifact
+
       - name: Extract JSON report from ZIP
         run: |
+          ls -l  # Check if the file exists before extraction
           unzip zap_scan.zip
-          ls -l  # List files to verify extraction
+          ls -l  # Verify extraction success
 
       - name: Import ZAP scan results into DefectDojo
         env:
