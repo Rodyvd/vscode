@@ -30,7 +30,7 @@ jobs:
           # Adjust the following values as needed:
           DEFECTDOJO_PRODUCT: 1
           DEFECTDOJO_ENGAGEMENT: 1
-          DEFECTDOJO_SCAN_TYPE: "ZAP scan"
+          DEFECTDOJO_SCAN_TYPE: "ZAP Scan"
           DEFECTDOJO_ENVIRONMENT: "Production"
           SCAN_DATE: 2025-03-18
         run: |
