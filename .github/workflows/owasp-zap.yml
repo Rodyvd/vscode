@@ -18,22 +18,10 @@ jobs:
           target: 'http://9.163.226.34'
 
       - name: Find zap_scan.zip
-        run: find . -name "zap_scan.zip"
+        run: pwd
 
       - name: List all files recursively
         run: ls -lR
-        
-      - name: Upload ZAP Scan results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: zap_scan_json  # Artifact name (not a file)
-          path: /
-
-      - name: Download ZAP Scan results
-        uses: actions/download-artifact@v4
-        with:
-          name: zap_scan_json
 
       - name: Import scan results into DefectDojo
         env:
