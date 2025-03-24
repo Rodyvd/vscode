@@ -49,6 +49,8 @@ jobs:
         with:
           name: trivy-report
 
+      - name: Set current date for SCAN_DATE
+        run: echo "SCAN_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Import scan results into DefectDojo
         env:
@@ -59,7 +61,7 @@ jobs:
           DEFECTDOJO_ENGAGEMENT: 2
           DEFECTDOJO_SCAN_TYPE: "Trivy Scan"
           DEFECTDOJO_ENVIRONMENT: "Production"
-          SCAN_DATE: 2025-03-19
+          SCAN_DATE: ${{ env.SCAN_DATE }}
         run: |
           echo "Uploading trivy-report.json to DefectDojo..."
           curl -k -X POST "$DEFECTDOJO_URL/api/v2/import-scan/" \
