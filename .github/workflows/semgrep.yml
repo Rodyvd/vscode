@@ -41,6 +41,9 @@ jobs:
         with:
           name: semgrep-results
 
+      - name: Set current date for SCAN_DATE
+        run: echo "SCAN_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
       - name: Import scan results into DefectDojo
         env:
           DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
@@ -50,7 +53,7 @@ jobs:
           DEFECTDOJO_ENGAGEMENT: 1
           DEFECTDOJO_SCAN_TYPE: "Semgrep JSON Report"
           DEFECTDOJO_ENVIRONMENT: "Production"
-          SCAN_DATE: 2025-03-18
+          SCAN_DATE: ${{ env.SCAN_DATE }}
         run: |
           echo "Uploading semgrep/results/semgrep.json to DefectDojo..."
           curl -k -X POST "$DEFECTDOJO_URL/api/v2/import-scan/" \
