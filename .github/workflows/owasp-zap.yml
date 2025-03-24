@@ -24,6 +24,9 @@ jobs:
       - name: List all files recursively
         run: ls -lR
 
+      - name: Set current date for SCAN_DATE
+        run: echo "SCAN_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
       - name: Import scan results into DefectDojo
         env:
           DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
@@ -33,7 +36,7 @@ jobs:
           DEFECTDOJO_ENGAGEMENT: 3
           DEFECTDOJO_SCAN_TYPE: "ZAP Scan"
           DEFECTDOJO_ENVIRONMENT: "Production"
-          SCAN_DATE: 2025-03-18
+          SCAN_DATE: ${{ env.SCAN_DATE }}
         run: |
           echo "Uploading zap scan to DefectDojo..."
           curl -k -X POST "$DEFECTDOJO_URL/api/v2/import-scan/" \
