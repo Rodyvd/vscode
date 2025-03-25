@@ -23,6 +23,7 @@ jobs:
 
       - name: Set up Snyk CLI
         uses: snyk/actions/setup@master
+        continue-on-error: true
 
       - name: Run Snyk SCA scan on requirements.txt
         run: snyk test
