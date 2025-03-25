@@ -55,10 +55,10 @@ jobs:
           DEFECTDOJO_ENVIRONMENT: "Production"
           SCAN_DATE: ${{ env.SCAN_DATE }}
         run: |
-          echo "Uploading semgrep/results/semgrep.json to DefectDojo..."
+          echo "Uploading snyk/results/snyk.json to DefectDojo..."
           curl -k -X POST "$DEFECTDOJO_URL/api/v2/import-scan/" \
             -H "Authorization: Token $DEFECTDOJO_API_TOKEN" \
-            -F "file=@semgrep/results/semgrep.json" \
+            -F "file=@snyk/results/snyk.json" \
             -F "scan_type=$DEFECTDOJO_SCAN_TYPE" \
             -F "product=$DEFECTDOJO_PRODUCT" \
             -F "engagement=$DEFECTDOJO_ENGAGEMENT" \
