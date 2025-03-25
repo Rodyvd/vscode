@@ -10,18 +10,19 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      
-      # Run Snyk and output the report in JSON format
-      - name: Run Snyk SCA scan and output JSON
-        run: snyk test --json > snyk-report.json
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Run Snyk SCA scan on requirements.txt
+        run: snyk test --json --file=requirements.txt > snyk-report.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      
 
-      # Upload the JSON report as an artifact
       - name: Upload Snyk JSON report artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: snyk-json-report
           path: snyk-report.json
