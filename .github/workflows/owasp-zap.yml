@@ -18,12 +18,6 @@ jobs:
           target: 'http://9.163.226.34'
           cmd_options: '-x report_xml.xml'
 
-      - name: Find zap_scan.zip
-        run: pwd
-
-      - name: List all files recursively
-        run: ls -lR
-
       - name: Set current date for SCAN_DATE
         run: echo "SCAN_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
