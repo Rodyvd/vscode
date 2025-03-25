@@ -5,21 +5,23 @@ on:
     secrets:
       SNYK_TOKEN:
         required: true
-      
+
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
-        continue-on-error: true 
+      - uses: actions/checkout@v2
+      
+      # Run Snyk and output the report in JSON format
+      - name: Run Snyk SCA scan and output JSON
+        run: snyk test --json > snyk-report.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      
+
+      # Upload the JSON report as an artifact
+      - name: Upload Snyk JSON report artifact
+        uses: actions/upload-artifact@v3
         with:
-          args: --sarif-file-output=snyk.sarif
-          json: true
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: snyk.sarif
+          name: snyk-json-report
+          path: snyk-report.json
