@@ -23,7 +23,7 @@ jobs:
       DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
 
   snyk-SCA:
-    #needs: semgrep-SAST
+    needs: semgrep-SAST
     uses: ./.github/workflows/snyk.yml
     secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -31,7 +31,7 @@ jobs:
       DEFECTDOJO_API_TOKEN: ${{ secrets.DEFECTDOJO_API_TOKEN }}
 
   build-image:
-    needs: [snyk-SCA, semgrep-SAST]
+    needs: snyk-SCA
     uses: ./.github/workflows/build-docker-image.yml
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
