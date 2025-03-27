@@ -48,6 +48,9 @@ jobs:
         with:
           name: snyk-results
 
+      - name: Set current date for SCAN_DATE
+        run: echo "SCAN_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
       - name: Import scan results into DefectDojo
         env:
           DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
