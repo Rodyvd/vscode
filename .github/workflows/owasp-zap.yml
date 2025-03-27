@@ -15,7 +15,7 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.12.0
         with:
-          target: 'http://9.163.226.34'
+          target: ${{ secrets.ZAP_TARGET }}
           cmd_options: '-x report_xml.xml'
 
       - name: Set current date for SCAN_DATE
