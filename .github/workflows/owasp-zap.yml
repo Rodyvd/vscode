@@ -7,7 +7,7 @@ on:
         required: true
       DEFECTDOJO_URL:
         required: true
-      ZAP_SCAN:
+      ZAP_TARGET:
         required: true
 
 jobs:
