@@ -7,6 +7,8 @@ on:
         required: true
       DEFECTDOJO_URL:
         required: true
+      ZAP_SCAN:
+        required: true
 
 jobs:
   owasp-zap:
