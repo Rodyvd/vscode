@@ -33,7 +33,7 @@ jobs:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
           severity: 'MEDIUM,HIGH,CRITICAL'
           format: 'json'
-          output: '${{ github.workspace }}/trivy/results/trivy-report.json'
+          output: '${{ github.workspace }}/trivy/results/'
           exit-code: '0'
           vuln-type: 'os,library'
           ignore-unfixed: false
