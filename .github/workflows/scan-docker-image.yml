@@ -27,6 +27,11 @@ jobs:
       - name: Create directory for Trivy results
         run: mkdir -p trivy/results
 
+      - name: Debug workspace
+        run: |
+          echo "Working directory: $(pwd)"
+          ls -R .
+
       - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@0.30.0
         with:
