@@ -28,12 +28,12 @@ jobs:
         run: mkdir -p trivy/results
 
       - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.30.0
         with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
           severity: 'MEDIUM,HIGH,CRITICAL'
           format: 'json'
-          output: 'trivy/results/trivy-report.json'
+          output: '${{ github.workspace }}/trivy/results/trivy-report.json'
           exit-code: '0'
           vuln-type: 'os,library'
           ignore-unfixed: false
