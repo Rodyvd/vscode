@@ -24,24 +24,19 @@ jobs:
           cache: true
           version: latest
 
-      - name: Create directory for Trivy results
-        run: mkdir -p trivy/results
-
-      - name: Debug workspace
-        run: |
-          echo "Working directory: $(pwd)"
-          ls -R .
-
-      - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@0.30.0
+      - name: Direct Trivy CLI scan
+        uses: aquasecurity/setup-trivy@v0.2.0
         with:
-          image-ref: ${{ secrets.DOCKER_USERNAME }}/pwc:latest
-          severity: 'MEDIUM,HIGH,CRITICAL'
-          format: 'json'
-          output: '${{ github.workspace }}/trivy/results/trivy-report.json'
-          exit-code: '0'
-          vuln-type: 'os,library'
-          ignore-unfixed: false
+          version: latest
+      - name: Run Trivy image scan
+        run: |
+          mkdir -p trivy/results
+          trivy image \
+            --format json \
+            --output trivy/results/trivy-report.json \
+            --severity MEDIUM,HIGH,CRITICAL \
+            --ignore-unfixed \
+            ${{ secrets.DOCKER_USERNAME }}/pwc:latest
 
       - name: Upload Trivy JSON Report
         uses: actions/upload-artifact@v4
