@@ -6,7 +6,7 @@ on:
       - main
     paths-ignore:
       - '.github/workflows/**'
-      - '/config/**'
+      - '/terraform/**/**'
 
 jobs:
   #sonarqube-SAST:
