@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pwc-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: pwc-app
+  template:
+    metadata:
+      labels:
+        app: pwc-app
+    spec:
+      containers:
+      - name: pwc-container
+        image: rodyvd1234/pwc:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-loadbalancer
+spec:
+  selector:
+    app: pwc-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
