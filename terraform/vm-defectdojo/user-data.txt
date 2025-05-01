@@ -1,0 +1,19 @@
+#!/bin/bash
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+git clone https://github.com/DefectDojo/django-DefectDojo
+cd django-DefectDojo
+
+docker-compose build
+
+docker-compose up -d
+
+rm -f docker-compose.override.yml
+ln -s docker-compose.override.https.yml docker-compose.override.yml
+docker-compose up -d
+
