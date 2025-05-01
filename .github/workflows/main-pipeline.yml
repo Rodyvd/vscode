@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - '.github/workflows/**'
       - '/terraform/aks/**'
-      - '/terraform/vm-defectdojo/**'
+      - 'terraform/vm-defectdojo/**'
 
 jobs:
   #sonarqube-SAST:
