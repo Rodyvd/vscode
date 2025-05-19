@@ -10,14 +10,8 @@ on:
       - 'terraform/vm-defectdojo/**'
 
 jobs:
-  #sonarqube-SAST:
-    #uses: ./.github/workflows/sonarqube.yml
-    #secrets:
-      #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      #SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   semgrep-SAST:
-    #needs: sonarqube-SAST
     uses: ./.github/workflows/semgrep.yml
     secrets:
       DEFECTDOJO_URL: ${{ secrets.DEFECTDOJO_URL }}
