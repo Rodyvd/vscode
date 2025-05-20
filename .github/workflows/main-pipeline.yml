@@ -10,7 +10,6 @@ on:
       - 'terraform/vm-defectdojo/**'
 
 jobs:
-
   semgrep-SAST:
     uses: ./.github/workflows/semgrep.yml
     secrets:
