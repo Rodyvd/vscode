@@ -1,5 +1,5 @@
 variable "ssh_public_key_path" {
-  default = "C:/Users/rdijk013/.ssh/id_rsa.pub"
+  default = "<LOCATION_PUBLIC_KEY>"
 }
 
 data "local_file" "ssh_key" {
